@@ -1,5 +1,7 @@
 # Parallel Graph
 
+#### Contributor: Dumitrascu Filip-Teodor
+
 ## Objectives
 
 - Learn how to design and implement parallel programs
