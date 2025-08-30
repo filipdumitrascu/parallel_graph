@@ -12,15 +12,14 @@
 ## Statement
 
 Implement a generic thread pool, then use it to traverse a graph and compute the sum of the elements contained by the nodes.
-You will be provided with a serial implementation of the graph traversal and with most of the data structures needed to implement the thread pool.
-Your job is to write the thread pool routines and then use the thread pool to traverse the graph.
+A serial implementation of the graph traversal and with most of the data structures needed to implement the thread pool are provided.
+Thread pool routines and graph traversal are implemented.
 
 ## Support Code
 
 The support code consists of the directories:
 
 - `src/` is the skeleton parallel graph implementation.
-  You will have to implement missing parts marked as `TODO` items.
 
 - `utils/` utility files (used for debugging & logging)
 
@@ -36,7 +35,6 @@ Each thread continuously polls the task queue for available tasks.
 Once tasks are put in the task queue, the threads poll tasks, and start running them.
 A thread pool creates **N** threads upon its creation and does not destroy (join) them throughout its lifetime.
 That way, the penalty of creating and destroying threads ad-hoc is avoided.
-As such, you must implement the following functions (marked with `TODO` in the provided skeleton, in `src/os_threadpool.c`):
 
 - `enqueue_task()`: Enqueue task to the shared task queue.
   Use synchronization.
@@ -48,8 +46,6 @@ As such, you must implement the following functions (marked with `TODO` in the p
 - `destroy_threadpool()`: Destroy a thread pool.
   Assume all threads have been joined.
 
-You must also update the `os_threadpool_t` structure in `src/os_threadpool.h` with the required bits for synchronizing the parallel implementation.
-
 Notice that the thread pool is completely independent of any given application.
 Any function can be registered in the task queue.
 
@@ -60,7 +56,6 @@ Since no thread is doing any work, no other task will be created.
 
 ### Graph Traversal
 
-Once you have implemented the thread pool, you need to test it by doing a parallel traversal of all connected nodes in a graph.
 A serial implementation for this algorithm is provided in `src/serial.c`.
 To make use of the thread pool, you will need to create tasks that will be put in the task queue.
 A task consists of 2 steps:
@@ -68,13 +63,10 @@ A task consists of 2 steps:
 1. Add the current node value to the overall sum.
 1. Create tasks and add them to the task queue for the neighbouring nodes.
 
-Implement this in the `src/parallel.c` (see the `TODO` items).
-You must implement the parallel and synchronized version of the `process_node()` function, also used in the serial implementation.
-
 ### Synchronization
 
-For synchronization you can use mutexes, semaphores, spinlocks, condition variables - anything that grinds your gear.
-However, you are not allowed to use hacks such as `sleep()`, `printf()` synchronization or adding superfluous computation.
+For synchronization thear are used mutexes, semaphores, spinlocks, condition variables - anything that grinds your gear.
+However, there are no hacks such as `sleep()`, `printf()` synchronization or adding superfluous computation.
 
 ### Input Files
 
@@ -94,7 +86,7 @@ A graph is represented internally by the `os_graph_t` structure (see `src/os_gra
 #### List
 
 A list is represented internally by the `os_queue_t` structure (see `src/os_list.h`).
-You will use this list to implement the task queue.
+This list is used to implement the task queue.
 
 #### Thread Pool
 
